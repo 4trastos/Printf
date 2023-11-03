@@ -6,7 +6,7 @@
 /*   By: davgalle <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 12:59:18 by davgalle          #+#    #+#             */
-/*   Updated: 2023/11/03 20:17:39 by davgalle         ###   ########.fr       */
+/*   Updated: 2023/11/03 21:57:59 by davgalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 
 void	ft_putchar(char c, int *count)
 {
-	write (1, &c, 1);
-	*count = *count + 1;
+	if (write (1, &c, 1) == -1)
+		*count = -1;
+	else
+		*count = *count + 1;
 }
 
 void	ft_putstr(char *str, int *count)
@@ -31,6 +33,8 @@ void	ft_putstr(char *str, int *count)
 	while (str[i] != '\0')
 	{
 		ft_putchar(str[i], count);
+		if (*count == -1)
+			return ;
 		i++;
 	}
 }

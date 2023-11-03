@@ -6,7 +6,7 @@
 /*   By: davgalle <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 15:58:52 by davgalle          #+#    #+#             */
-/*   Updated: 2023/11/03 20:20:58 by davgalle         ###   ########.fr       */
+/*   Updated: 2023/11/03 22:02:26 by davgalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,6 @@ void	ft_putchar(char c, int *count);
 void	ft_putstr(char *str, int *count);
 void	ft_putnbr(int nb, int *count);
 void	ft_putunsign(unsigned int nb, int *count);
-void	ft_hexa(int nb, char *base, int *count);
+void	ft_hexa(unsigned long long nb, char *base, int *count);
 
 #endif

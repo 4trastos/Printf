@@ -6,7 +6,7 @@
 /*   By: davgalle <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 19:15:28 by davgalle          #+#    #+#             */
-/*   Updated: 2023/11/03 20:22:09 by davgalle         ###   ########.fr       */
+/*   Updated: 2023/11/03 22:01:27 by davgalle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ void	ft_whattype(char c, va_list args, int *nb)
 	else if (c == 'p')
 	{
 		ft_putstr("0x", nb);
-		ft_hexa(va_arg(args, unsigned long long), "0123456789abcdef", nb);
+		if (*nb != -1)
+			ft_hexa(va_arg(args, unsigned long long), "0123456789abcdef", nb);
 	}
 	else if (c == 'd')
 		ft_putnbr(va_arg(args, int), nb);
@@ -50,12 +51,14 @@ int	ft_printf(char const *format, ...)
 	{
 		if (format[i] == '%')
 		{
-			i++;
 			ft_whattype(format[i + 1], args, &count);
+			i++;
 		}
 		else
 			ft_putchar(format[i], &count);
 		i++;
+		if (count < 0)
+			return (-1);
 	}
 	va_end(args);
 	return (count);
@@ -65,25 +68,26 @@ int	main(void)
 {
 	char test_character = 'z';
 	char test[] = "printea el test2";
-	int	test_void = 123456789;
+	int	test_void = -9;
 	int	test_dec = -123456789;
 	int	test_int = 123456789;
 	unsigned int test_u = -131313;
-	int test_x = 435353435;
+	int test_x = -1;
 	int	test_X = 61;
 	char	test_percent = '%';
-		
-	ft_printf("%");
-	ft_printf(": %u\n", ft_printf("%c", test_character));
-	ft_printf(": %u\n", ft_printf("%s", test));
-	ft_printf(": %u\n", ft_printf("%p", test_void));
-	ft_printf(": %u\n", ft_printf("%d", test_dec));
-	ft_printf(": %u\n", ft_printf("%i", test_int));
-	ft_printf(": %u\n", ft_printf("%u", test_u));
+
+//	ft_printf(": %u\n", ft_printf("%c", test_character));
+//	ft_printf(": %u\n", ft_printf("%s", test));
+//	ft_printf(": %u\n", ft_printf("%p", test_void));
+//	ft_printf(": %u\n", ft_printf("%d", test_dec));
+//	ft_printf(": %u\n", ft_printf("%i", test_int));
+//	ft_printf(": %u\n", ft_printf("%u", test_u));
 	ft_printf(": %u\n", ft_printf("%x", test_x));
-	ft_printf(": %u\n", ft_printf("%X", test_X));
-	ft_printf(": %u\n", ft_printf("%%", test_percent));
-	ft_printf(": %u\n", ft_printf("printea la string sin arg"));
+//	ft_printf(": %u\n", ft_printf("%X", test_X));
+//	ft_printf(": %u\n", ft_printf("%%", test_percent));
+//	ft_printf(": %u\n", ft_printf("printea la string sin arg"));
+
+	printf("paco %x\n", -1);
 
 	return (0);
 }*/
